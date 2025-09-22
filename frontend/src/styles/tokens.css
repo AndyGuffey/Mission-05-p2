@@ -1,0 +1,25 @@
+:root {
+  /* Core brand (from your palette) */
+  --z-orange: #ff7a00;
+  --z-orange-900: #c85f00;
+  --z-purple: #6f3cff;
+  --z-deeppurple: #3b2a8f;
+
+  --bg: #ffffff;
+  --fg: #111320;
+  --muted: #6b7280;
+
+  --card: #f7f7fb;
+  --border: #e8e8f3;
+
+  --radius: 16px;
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+
+  --space-1: 6px;
+  --space-2: 10px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 36px;
+
+  --grad: linear-gradient(135deg, var(--z-orange), var(--z-purple));
+}

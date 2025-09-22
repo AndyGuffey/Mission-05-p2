@@ -1,0 +1,40 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+.header-row {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 16px;
+}
+.brand img {
+  height: 36px;
+}
+.header-cta {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+.header-sub {
+  border-top: 1px solid var(--border);
+}
+.subnav {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  gap: 18px;
+  padding: 8px 16px;
+}
+.subnav-link {
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+}
+.subnav-link:hover {
+  background: #f5f6fb;
+}
