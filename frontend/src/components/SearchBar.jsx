@@ -9,6 +9,9 @@ export default function SearchBar({
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") onSearch(); // immediate fetch on Enter
+        }}
         placeholder="Enter a location, suburb, or station name"
       />
       <button className="btn btn-ghost" onClick={onUseLocation}>

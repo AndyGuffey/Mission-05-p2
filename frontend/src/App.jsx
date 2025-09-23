@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import FindStation from "./pages/FindStation";
+import StationDetail from "./pages/StationDetail";
+
 // import "./App.css";
 
 // function App() {
@@ -47,6 +49,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/find-station" element={<FindStation />} />
+        <Route path="/station/:id" element={<StationDetail />} />
       </Routes>
 
       <Footer />
