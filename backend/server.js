@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const { getStations, getStationById } = require("./stationLogic");
 require("dotenv").config();
 
 // Initialize app
@@ -20,7 +21,25 @@ app.get("/", (req, res) => {
 
 // Define routes
 // app.use('/api/stations', require('./routes/stations'));
-
+app.get("/api/stations", async (req, res) => {
+  try {
+    const data = await getStations(req.query);
+    res.json(data);
+  } catch (err) {
+    console.error("GET /api/stations:", err);
+    res.status(500).json({ error: "Failed to fetch stations" });
+  }
+});
+app.get("/api/stations/:id", async (req, res) => {
+  try {
+    const doc = await getStationById(req.params.id);
+    if (!doc) return res.status(404).json({ error: "Not found" });
+    res.json(doc);
+  } catch (e) {
+    console.error("GET /api/stations/:id", e);
+    res.status(500).json({ error: "Failed to fetch station" });
+  }
+});
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);

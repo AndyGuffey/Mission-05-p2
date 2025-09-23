@@ -21,6 +21,11 @@ const ZstationSchema = new mongoose.Schema(
       default: [],
       // Example services: ['Charging', 'Restroom', 'Food', 'Shop']
     },
+    FuelType: {
+      type: [String],
+      default: [],
+      // Example FuelType: ['91', '95', '98', 'Diesel', 'EV']
+    },
     location: {
       type: {
         type: String,
@@ -39,6 +44,6 @@ const ZstationSchema = new mongoose.Schema(
 );
 
 // Add geospatial index for location-based queries
-ZstationSchema.index({ location: "2dsphere" });
+ZstationSchema.index({ location: "2dsphere", name: "text", address: "text" });
 
 module.exports = mongoose.model("Zstation", ZstationSchema);
