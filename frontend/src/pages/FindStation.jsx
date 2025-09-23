@@ -30,38 +30,20 @@ export default function FindStation() {
 
   return (
     <div className="find-station-page">
+      {/* DIV for station details */}
       <div className="stations-sidebar">
-        <h2>Find a Station</h2>
-        {loading && <p>Loading stations...</p>}
-        {error && <p className="error-message">Error: {error}</p>}
-        {!loading && !error && stations.length === 0 && (
-          <p>No stations found.</p>
-        )}
-        {!loading && !error && stations.length > 0 && (
-          <div className="stations-list">
-            {stations.map((station) => (
-              <div key={station._id} className="station-card">
-                <h3>{station.name}</h3>
-                <p>{station.address}</p>
-                <p className="hours">
-                  {station.isOpen24Hours ? "Open 24 Hours" : "Limited Hours"}
-                </p>
-                <div className="services">
-                  {station.services.map((service, index) => (
-                    <span key={index} className="service-tag">
-                      {service}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Your teammate will add content here later */}
       </div>
 
+      {/* Google Maps container */}
       <div className="map-container">
-        {/* Pass the stations data to the Map component */}
-        <Map stations={stations} />
+        {loading ? (
+          <div className="loading-overlay">Loading stations...</div>
+        ) : error ? (
+          <div className="error-overlay">Error: {error}</div>
+        ) : (
+          <Map stations={stations} />
+        )}
       </div>
     </div>
   );
