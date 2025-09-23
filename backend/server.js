@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 });
 
 // Define routes
-// app.use('/api/stations', require('./routes/stations'));
+app.use("/api/stations", require("./routes/stations"));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
