@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { GoogleMapsProvider } from "./components/GoogleMapsProvider";
 import Home from "./pages/Home";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
@@ -46,11 +47,13 @@ export default function App() {
         </a>
       </nav>
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/find-station" element={<FindStation />} />
-        <Route path="/station/:id" element={<StationDetail />} />
-      </Routes>
+      <GoogleMapsProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/find-station" element={<FindStation />} />
+          <Route path="/station/:id" element={<StationDetail />} />
+        </Routes>
+      </GoogleMapsProvider>
 
       <Footer />
     </div>
