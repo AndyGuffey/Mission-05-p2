@@ -1,13 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import { GoogleMap } from "@react-google-maps/api";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import { useNavigate } from "react-router-dom";
 import "../styles/Map.css";
-
-/**
- * Libraries array defined outside component to prevent performance warning
- * from LoadScript component re-rendering with new array references
- */
-const libraries = ["marker"];
 
 // Map container dimensions
 const containerStyle = {
@@ -36,9 +31,9 @@ export default function Map({ stations = [] }) {
   const mapRef = useRef(null);
   const markersRef = useRef([]);
   const markerClustererRef = useRef(null);
+  const navigate = useNavigate();
 
   // Environment variables for API credentials
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
 
   /**
@@ -135,10 +130,10 @@ export default function Map({ stations = [] }) {
               title: station.name,
             });
 
-          // Add click handler for future interactivity
+          // Add click handler to navigate to station details
           advancedMarker.addListener("click", () => {
             console.log("Clicked on:", station.name);
-            // Future enhancement: Show station details in sidebar or modal
+            navigate(`/station/${station.id}`);
           });
 
           return advancedMarker;
@@ -185,7 +180,8 @@ export default function Map({ stations = [] }) {
         });
       }
     },
-    [stations]
+
+    [stations, navigate]
   );
 
   /**
@@ -249,22 +245,19 @@ export default function Map({ stations = [] }) {
       {/* Optional filter buttons */}
       {/* {filterButtons} */}
 
-      {/* LoadScript loads the Google Maps JavaScript API */}
-      <LoadScript googleMapsApiKey={apiKey} libraries={libraries}>
-        {/* GoogleMap component renders the actual map */}
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={defaultCenter}
-          zoom={10}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-          options={{
-            mapId: mapId, // Required for Advanced Markers
-          }}
-        >
-          {/* Markers are created imperatively in createMarkers function */}
-        </GoogleMap>
-      </LoadScript>
+
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={defaultCenter}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        options={{
+          mapId: mapId, // Required for Advanced Markers
+        }}
+      >
+        {/* Markers are created imperatively in createMarkers function */}
+      </GoogleMap>
     </div>
   );
 }
