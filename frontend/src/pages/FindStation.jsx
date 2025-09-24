@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SearchBar from "../components/SearchBar.jsx";
 import StationCard from "../components/StationCard.jsx";
-import MapStub from "../components/MapStub.jsx";
+import Map from "../components/Map.jsx";
 import "../styles/finder.css";
 
 // Use proxy if present, or fall back to full URL
@@ -185,7 +185,7 @@ export default function FindStation() {
         </div>
 
         <div className="map-col">
-          <MapStub markers={stations} />
+          <Map stations={stations} />
         </div>
       </div>
     </div>
