@@ -1,32 +1,50 @@
+// ? StationDetail Component
+/**
+ * Displays detailed information about a specific Z Energy station including:
+ * - Station name, address, and operating hours
+ * - Available fuel types and services
+ * - Interactive map showing station location
+ * - Directions functionality from user's location to the station
+ *
+ * Uses Google Maps API for mapping and directions services.
+ */
 import { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { GoogleMap, DirectionsRenderer, MarkerF } from "@react-google-maps/api";
 import "../styles/station-detail.css";
 
+// API base URL from environment variables with fallback
 const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:4000/api";
 
-// Map container style
+// Map container style for consistent dimensions
 const mapContainerStyle = {
   width: "100%",
   height: "100%",
 };
 
 export default function StationDetail() {
-  const { id } = useParams();
+  const { id } = useParams(); // Get station ID from URL params
+
+  // Station data and loading states
   const [station, setStation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
 
-  // New states for directions feature
+  // States for directions functionality
   const [directions, setDirections] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const [directionDetails, setDirectionDetails] = useState(null);
   const [loadingDirections, setLoadingDirections] = useState(false);
+
+  // Reference to the Google Map instance for imperative actions
   const mapRef = useRef(null);
 
-  // Google Maps API key
+  // Google Maps custom map ID from environment variables
   const mapId = import.meta.env.VITE_GOOGLE_MAP_ID;
 
+  /**
+   * Fetch station details from API when component mounts or ID changes
+   */
   useEffect(() => {
     (async () => {
       try {
@@ -44,7 +62,10 @@ export default function StationDetail() {
     })();
   }, [id]);
 
-  // Get user's current location
+  /**
+   * Get user's current location using browser's geolocation API
+   * Then calculate directions from that position to the station
+   */
   function getUserLocation() {
     if (!station) return;
 
@@ -74,7 +95,11 @@ export default function StationDetail() {
     }
   }
 
-  // Calculate directions using Google Maps Directions API
+  /**
+   * Calculate directions using Google Maps Directions API
+   *
+   * @param {Object} origin - User's location coordinates {lat, lng}
+   */
   function calculateDirections(origin) {
     if (!station || !station.lat || !station.lng) {
       setLoadingDirections(false);
@@ -111,15 +136,20 @@ export default function StationDetail() {
     );
   }
 
-  // Handle map load
+  /**
+   * Store reference to the Google Map instance when loaded
+   * @param {Object} map - Google Maps instance
+   */
   function onMapLoad(map) {
     mapRef.current = map;
   }
 
+  // Loading and error state handling
   if (loading) return <div className="container">Loading…</div>;
   if (err) return <div className="container">{err}</div>;
   if (!station) return <div className="container">Not found.</div>;
 
+  // Process station data for display
   const fuels = station.fuels ?? station.FuelType ?? [];
   const services = station.services ?? [];
   const days = [
@@ -131,10 +161,12 @@ export default function StationDetail() {
     "Saturday",
     "Sunday",
   ];
+
+  // Determine opening hours text to display
   const openStr =
     station.hours || (station.isOpen24Hours ? "Open 24 hours" : "Open");
 
-  // Keep the external Google Maps directions as fallback
+  // External Google Maps directions URL as fallback
   const directionsHref =
     station.lat && station.lng
       ? `https://www.google.com/maps/dir/?api=1&destination=${station.lat},${station.lng}`
@@ -144,6 +176,7 @@ export default function StationDetail() {
 
   return (
     <div className="station-detail">
+      {/* Header with back button and station name */}
       <div className="detail-bar">
         <Link className="back" to="/find-station">
           ← Back
@@ -152,13 +185,16 @@ export default function StationDetail() {
       </div>
 
       <div className="detail-grid">
+        {/* Left column: Station information */}
         <div className="left">
           <h2 className="address">{station.address}</h2>
 
+          {/* Show distance if available */}
           {typeof station.distanceKm === "number" && (
             <p className="muted">{station.distanceKm} km away</p>
           )}
 
+          {/* Opening hours table */}
           <div className="hours">
             {days.map((d) => (
               <div className="row" key={d}>
@@ -168,7 +204,7 @@ export default function StationDetail() {
             ))}
           </div>
 
-          {/* Replace external link with in-app directions button */}
+          {/* In-app directions button */}
           {station.lat && station.lng && !directions && (
             <button
               className="btn btn-primary"
@@ -179,7 +215,7 @@ export default function StationDetail() {
             </button>
           )}
 
-          {/* Fallback to external Google Maps */}
+          {/* External directions link if coordinates aren't available */}
           {(!station.lat || !station.lng) && (
             <a
               className="btn btn-primary"
@@ -191,7 +227,7 @@ export default function StationDetail() {
             </a>
           )}
 
-          {/* Show directions details when available */}
+          {/* Directions information panel */}
           {directions && directionDetails && (
             <div className="directions-info">
               <h3>Directions</h3>
@@ -218,7 +254,7 @@ export default function StationDetail() {
                 </div>
               </div>
 
-              {/* Option to open in Google Maps */}
+              {/* External Google Maps option */}
               <a
                 className="btn btn-secondary"
                 href={directionsHref}
@@ -230,6 +266,7 @@ export default function StationDetail() {
             </div>
           )}
 
+          {/* Fuel types section */}
           <section className="chips">
             <h3>Fuel Types</h3>
             <div className="pills">
@@ -245,6 +282,7 @@ export default function StationDetail() {
             </div>
           </section>
 
+          {/* Available services section */}
           <section className="chips">
             <h3>Services</h3>
             <div className="pills">
@@ -261,8 +299,8 @@ export default function StationDetail() {
           </section>
         </div>
 
+        {/* Right column: Map display */}
         <div className="right">
-          {/* Replace map placeholder with actual Google Map */}
           <div className="map-container">
             <GoogleMap
               mapContainerStyle={mapContainerStyle}
@@ -273,6 +311,7 @@ export default function StationDetail() {
                 mapId: mapId,
               }}
             >
+              {/* Custom Z Energy marker when not showing directions */}
               {!directions && (
                 <MarkerF
                   position={{ lat: station.lat, lng: station.lng }}
@@ -285,14 +324,14 @@ export default function StationDetail() {
                 />
               )}
 
-              {/* Render directions if available */}
+              {/* Render route when directions are available */}
               {directions && (
                 <DirectionsRenderer
                   directions={directions}
                   options={{
-                    suppressMarkers: false,
+                    suppressMarkers: false, // Show default A/B markers
                     polylineOptions: {
-                      strokeColor: "#130F51",
+                      strokeColor: "#130F51", // Z Energy brand color
                       strokeWeight: 5,
                       strokeOpacity: 0.7,
                     },

@@ -17,6 +17,7 @@ export function GoogleMapsProvider({ children }) {
         googleMapsApiKey={apiKey}
         libraries={libraries}
         onLoad={() => setIsLoaded(true)}
+        onError={(error) => console.error("Google Maps failed to load:", error)}
         loadingElement={<div className="map-loading">Loading maps...</div>}
       >
         {children}
