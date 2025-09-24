@@ -180,6 +180,7 @@ export default function Map({ stations = [] }) {
         });
       }
     },
+
     [stations, navigate]
   );
 
@@ -244,7 +245,7 @@ export default function Map({ stations = [] }) {
       {/* Optional filter buttons */}
       {/* {filterButtons} */}
 
-      {/* GoogleMap component renders the actual map */}
+
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={defaultCenter}

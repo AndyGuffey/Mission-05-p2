@@ -1,0 +1,64 @@
+:root {
+  --bg: #ffffff;
+  --text: #0b1220;
+  --muted: #6b7280;
+  --border: #e6eaf5;
+  --card: #ffffff;
+  --shadow-lg: 0 10px 30px rgba(16, 24, 40, 0.06);
+  --z-orange: #ff7a00; /* already used in your app */
+  --header-bg: var(--card);
+  --header-fg: var(--text);
+  --footer-bg: var(--card);
+  --footer-fg: var(--text);
+  --hover-surface: #f5f6fb;
+}
+
+/* Dark */
+:root.dark {
+  --bg: #0b1020;
+  --text: #e7ecff;
+  --muted: #a6b0cf;
+  --border: #24304d;
+  --card: #121833;
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.5);
+  --header-bg: #0d1530;
+  --header-fg: #e7ecff;
+  --footer-bg: #0d1530;
+  --footer-fg: #e7ecff;
+  --hover-surface: rgba(255, 255, 255, 0.06);
+}
+
+/* Global base styles using the tokens */
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Optional niceties */
+* {
+  transition: color 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Make your map placeholder adapt in dark */
+:root.dark .map-placeholder {
+  background: #121833;
+  color: #a6b0cf;
+}
+
+/* Optional: round icon button look for the toggle */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}

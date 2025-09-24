@@ -24,29 +24,12 @@ export default function App() {
   return (
     <div className="app-shell">
       <Header />
-      <nav className="top-tabs">
-        <NavLink
-          to="/"
-          end
-          className={({ isActive }) => (isActive ? "tab active" : "tab")}
-        >
-          For personal
-        </NavLink>
-        <NavLink
-          to="/business"
-          className="tab"
-          onClick={(e) => e.preventDefault()}
-        >
-          For business
-        </NavLink>
-        <a className="tab" href="#" onClick={(e) => e.preventDefault()}>
-          Z App
-        </a>
-        <a className="tab" href="#" onClick={(e) => e.preventDefault()}>
-          About Z
-        </a>
-      </nav>
 
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/find-station" element={<FindStation />} />
+        <Route path="/station/:id" element={<StationDetail />} />
+      </Routes>
       <GoogleMapsProvider>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -54,6 +37,7 @@ export default function App() {
           <Route path="/station/:id" element={<StationDetail />} />
         </Routes>
       </GoogleMapsProvider>
+
 
       <Footer />
     </div>

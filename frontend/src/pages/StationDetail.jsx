@@ -179,7 +179,7 @@ export default function StationDetail() {
       {/* Header with back button and station name */}
       <div className="detail-bar">
         <Link className="back" to="/find-station">
-          ← Back
+          Back
         </Link>
         <h1>{station.name}</h1>
       </div>

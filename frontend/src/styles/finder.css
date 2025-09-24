@@ -1,23 +1,46 @@
+:root {
+  --z-orange: #ff7a00;
+}
+
+.finder-header {
+  background: var(--z-orange);
+  color: #fff;
+  padding: 14px 16px 8px; /* space around title + subtitle */
+  border-radius: 16px 16px 0 0; /* top rounded corners */
+}
+
+.finder-header .muted {
+  color: rgba(255, 255, 255, 0.9); /* subtitle on orange */
+}
+
 .finder {
-  max-width: 1100px;
-  margin: 18px auto;
+  width: clamp(320px, 75vw, 1440px);
+  max-width: none; /* override previous 1100px cap */
+  margin: 24px auto; /* centers the block */
   padding: 0 16px;
 }
 .finder-header h1 {
+  margin: 0;
   font-size: 2rem;
-  margin: 0.2rem 0;
+  line-height: 1.1;
+  background: transparent;
 }
 .searchbar {
   display: flex;
   gap: 8px;
-  margin: 14px 0;
+  background: var(--z-orange);
+  padding: 8px 16px 16px; /* bottom padding for the panel */
+  margin: 0 0 12px; /* remove top gap so it touches header */
+  border-radius: 0 0 16px 16px; /* bottom rounded corners */
 }
+
 .searchbar input {
   flex: 1;
   padding: 0.7rem 0.9rem;
-  border: 1px solid var(--border);
+  border: none;
   border-radius: 999px;
   background: #fff;
+  color: #111;
 }
 
 .filter-row {
