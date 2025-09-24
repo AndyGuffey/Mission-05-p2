@@ -55,7 +55,7 @@ export default function StationDetail() {
     <div className="station-detail">
       <div className="detail-bar">
         <Link className="back" to="/find-station">
-          ← Back
+          Back
         </Link>
         <h1>{station.name}</h1>
       </div>

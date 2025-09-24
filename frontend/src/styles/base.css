@@ -5,6 +5,17 @@ html,
 body,
 #root {
   height: 100%;
+  width: 100%;
+  --pill-bg: #fff;
+  --pill-fg: var(--fg);
+  --pill-border: var(--border);
+  --pill-hover: #f5f6fb;
+}
+:root.dark {
+  --pill-bg: rgba(255, 255, 255, 0.1); /* subtle translucent surface */
+  --pill-fg: var(--fg); /* your fg is white in dark */
+  --pill-border: rgba(255, 255, 255, 0.18);
+  --pill-hover: rgba(255, 255, 255, 0.16);
 }
 body {
   margin: 0;
@@ -64,23 +75,21 @@ img {
 }
 .pill {
   padding: 0.35rem 0.7rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--pill-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--pill-bg);
+  color: var(--pill-fg);
+  cursor: pointer;
+}
+.pill:hover {
+  background: var(--pill-hover);
 }
 .pill.active {
   background: var(--z-orange);
-  border-color: transparent;
+  border-color: var(--z-orange);
   color: #fff;
 }
 
-.top-tabs {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  padding: 8px;
-  border-bottom: 1px solid var(--border);
-}
 .tab {
   padding: 0.5rem 0.75rem;
   border-radius: 8px;
@@ -98,16 +107,25 @@ img {
 
 .footer {
   margin-top: auto;
-  background: #0b1020;
-  color: #e7ecff;
+  background: var(--footer-bg);
+  color: var(--footer-fg);
+  border-top: 1px solid var(--border);
   padding: 40px 20px;
+}
+.footer a,
+.site-footer a {
+  color: var(--footer-fg);
+}
+.footer .muted,
+.site-footer .muted {
+  color: var(--muted);
 }
 .footer-cols {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
-  max-width: 1100px;
-  margin: 0 auto;
+  max-width: auto;
+  margin: auto;
 }
 .footer h4 {
   margin: 0 0 8px 0;
