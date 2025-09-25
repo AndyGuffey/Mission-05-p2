@@ -245,7 +245,6 @@ export default function Map({ stations = [] }) {
       {/* Optional filter buttons */}
       {/* {filterButtons} */}
 
-
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={defaultCenter}

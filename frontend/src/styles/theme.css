@@ -11,6 +11,15 @@
   --footer-bg: var(--card);
   --footer-fg: var(--text);
   --hover-surface: #f5f6fb;
+  --fg: var(--text);
+  --surface: var(--card);
+  --static-card: #ffffff;
+  --static-text: #0b1220;
+  --static-muted: #6b7280;
+  --static-border: #e6eaf5;
+  --static-pill-bg: #ffffff;
+  --static-pill-text: #0b1220;
+  --static-pill-border: #e6eaf5;
 }
 
 /* Dark */
@@ -26,6 +35,12 @@
   --footer-bg: #0d1530;
   --footer-fg: #e7ecff;
   --hover-surface: rgba(255, 255, 255, 0.06);
+  --pill-bg: rgba(255, 255, 255, 0.1); /* subtle translucent surface */
+  --pill-fg: var(--fg); /* your fg is white in dark */
+  --pill-border: rgba(255, 255, 255, 0.18);
+  --pill-hover: rgba(255, 255, 255, 0.16);
+  --fg: var(--text);
+  --surface: var(--card);
 }
 
 /* Global base styles using the tokens */
@@ -61,4 +76,10 @@ body {
   width: 18px;
   height: 18px;
   display: block;
+}
+.theme-toggle .theme-icon::before {
+  content: "☀︎";
+}
+html[data-theme="dark"] .theme-toggle .theme-icon::before {
+  content: "🌙";
 }

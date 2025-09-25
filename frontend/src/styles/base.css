@@ -11,12 +11,6 @@ body,
   --pill-border: var(--border);
   --pill-hover: #f5f6fb;
 }
-:root.dark {
-  --pill-bg: rgba(255, 255, 255, 0.1); /* subtle translucent surface */
-  --pill-fg: var(--fg); /* your fg is white in dark */
-  --pill-border: rgba(255, 255, 255, 0.18);
-  --pill-hover: rgba(255, 255, 255, 0.16);
-}
 body {
   margin: 0;
   font-family: Inter, system-ui, Arial, sans-serif;
@@ -156,4 +150,14 @@ img {
 .badge-success {
   background: #e7f9ef;
   border-color: #b4efc9;
+}
+.icon-btn.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  color: var(--fg);
 }
