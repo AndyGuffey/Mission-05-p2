@@ -185,7 +185,14 @@ export default function FindStation() {
         </div>
 
         <div className="map-col">
-          <Map stations={stations} />
+          <Map
+            stations={stations}
+            activeFuelFilter={filters.fuel}
+            onFuelFilterChange={(fuelType) => {
+              setFilters((f) => ({ ...f, fuel: fuelType }));
+              // This will trigger the useEffect to fetch stations with the new filter
+            }}
+          />
         </div>
       </div>
     </div>

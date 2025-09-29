@@ -1,10 +1,17 @@
+/* 
+  Main container for the map component.
+  Ensures the map fills its parent and allows for overlay positioning.
+*/
 .station-map-container {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-/* Cluster styling */
+/* 
+  Cluster marker styling for grouped stations.
+  Uses a circular background and centers the count.
+*/
 .custom-cluster {
   display: flex;
   align-items: center;
@@ -12,7 +19,12 @@
 }
 
 .cluster-circle {
-  background-color: rgba(19, 15, 81, 0.82);
+  background-color: rgba(
+    19,
+    15,
+    81,
+    0.82
+  ); /* Z Energy brand blue with opacity */
   border-radius: 50%;
   width: 1.67044rem;
   height: 1.67063rem;
@@ -28,7 +40,10 @@
   font-size: 0.875rem;
 }
 
-/* Custom marker styling */
+/* 
+  Custom marker styling for individual stations.
+  Uses flex layout for vertical alignment and pointer cursor for interactivity.
+*/
 .custom-marker {
   position: relative;
   display: flex;
@@ -37,6 +52,10 @@
   cursor: pointer;
 }
 
+/* 
+  SVG marker icon styling.
+  Adds drop shadow and scale effect on hover for emphasis.
+*/
 .marker-icon {
   width: 32px;
   height: 32px;
@@ -48,6 +67,11 @@
   transform: scale(1.1);
 }
 
+/* 
+  Marker label styling.
+  Hidden by default, appears on marker hover.
+  Provides a subtle background and shadow for readability.
+*/
 .marker-label {
   margin-top: 4px;
   text-align: center;
@@ -64,4 +88,125 @@
 
 .custom-marker:hover .marker-label {
   opacity: 1;
+}
+
+/* 
+  Map filter button container.
+  Uses flexbox for horizontal layout, spacing, and centering.
+  Intended to be used as a Google Maps custom control overlay.
+*/
+.map-filters {
+  margin: 10px;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border-radius: 10px;
+}
+
+/* 
+  Fuel type filter buttons.
+  Each button uses a unique border color for its fuel type.
+  Includes hover and active states for interactivity and accessibility.
+*/
+.filter-btn[data-fuel="91"] {
+  border-radius: 1.3125rem;
+  border: 2px solid var(--Gas-Types-Z91, #028828); /* Z91 green */
+  background: var(--Neutral-White, #fff);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: #028828;
+  font-weight: 500;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.filter-btn[data-fuel="91"]:hover {
+  background: #f0fff0;
+  transform: translateY(-2px);
+}
+
+.filter-btn[data-fuel="91"].active {
+  background: #028828;
+  color: white;
+  border-color: #028828;
+}
+
+.filter-btn[data-fuel="95"] {
+  border-radius: 1.3125rem;
+  border: 2px solid var(--Gas-Types-Z95, #f90707); /* ZX Premium red */
+  background: var(--Neutral-White, #fff);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: #f90707;
+  font-weight: 500;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.filter-btn[data-fuel="95"]:hover {
+  background: #fff8f0;
+  transform: translateY(-2px);
+}
+
+.filter-btn[data-fuel="95"].active {
+  background: #f90707;
+  color: white;
+  border-color: #f90707;
+}
+
+.filter-btn[data-fuel="Diesel"] {
+  border-radius: 1.3125rem;
+  border: 2px solid var(--Gas-Types-Diesel, #000000); /* Diesel black */
+  background: var(--Neutral-White, #fff);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: #000000;
+  font-weight: 500;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.filter-btn[data-fuel="Diesel"]:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+.filter-btn[data-fuel="Diesel"].active {
+  background: #000000;
+  color: white;
+  border-color: #000000;
+}
+
+.filter-btn[data-fuel="all"] {
+  border-radius: 1.3125rem;
+  border: 2px solid var(--Z-Brand-Blue, #130f51); /* Z Energy blue */
+  background: var(--Neutral-White, #fff);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: #130f51;
+  font-weight: 500;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: fit-content;
+  transition: all 0.2s ease;
+}
+
+.filter-btn[data-fuel="all"]:hover {
+  background: #f0f0f5;
+  transform: translateY(-2px);
+}
+
+.filter-btn[data-fuel="all"].active {
+  background: #130f51;
+  color: white;
+  border-color: #130f51;
 }
