@@ -128,54 +128,58 @@ export default function FindStation() {
   }
 
   return (
-    <div className="finder">
-      <div className="finder-header">
-        <h1>Find a station</h1>
-        <p className="muted">Search by location, services, or fuel type.</p>
-      </div>
+    <div className="finder-grid">
+      <div className="finder-left">
+        <div className="finder-header">
+          <h1>Find a Z Station</h1>
+          <p className="muted">Search by location, services, or fuel type.</p>
+        </div>
 
-      <SearchBar
-        value={query}
-        onChange={setQuery}
-        onUseLocation={useMyLocation}
-        onSearch={handleApply}
-      />
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+          onUseLocation={useMyLocation}
+          onSearch={handleApply}
+        />
 
-      <div className="filter-row">
-        <select
-          value={filters.service}
-          onChange={(e) =>
-            setFilters((f) => ({ ...f, service: e.target.value }))
-          }
-        >
-          <option value="">All services</option>
-          <option>Car wash</option>
-          <option>LPG</option>
-          <option>Trailer hire</option>
-          <option>EV charging</option>
-          <option>Food</option>
-          <option>Restroom</option>
-          <option>Shop</option>
-        </select>
-        <select
-          value={filters.fuel}
-          onChange={(e) => setFilters((f) => ({ ...f, fuel: e.target.value }))}
-        >
-          <option value="">Fuel type</option>
-          <option>91</option>
-          <option>95</option>
-          <option>98</option>
-          <option>Diesel</option>
-          <option>EV</option>
-        </select>
-      </div>
-
-      <div className="results-header">
-        <strong>{stations.length}</strong> Stations found
-      </div>
-
-      <div className="finder-grid">
         <div className="results-col">
+          {/* Group results-header and filter-row in a station-card */}
+          <div className="station-card">
+            <div className="results-header">
+              <strong>{stations.length}</strong> Stations found
+            </div>
+            <div className="filter-row">
+              <select
+                value={filters.service}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, service: e.target.value }))
+                }
+              >
+                <option value="">All services</option>
+                <option>Car wash</option>
+                <option>LPG</option>
+                <option>Trailer hire</option>
+                <option>EV charging</option>
+                <option>Food</option>
+                <option>Restroom</option>
+                <option>Shop</option>
+              </select>
+              <select
+                value={filters.fuel}
+                onChange={(e) =>
+                  setFilters((f) => ({ ...f, fuel: e.target.value }))
+                }
+              >
+                <option value="">Fuel type</option>
+                <option>91</option>
+                <option>95</option>
+                <option>98</option>
+                <option>Diesel</option>
+                <option>EV</option>
+              </select>
+            </div>
+          </div>
+
           {loading && <div className="loading">Loading…</div>}
           {!loading &&
             stations.map((s) => <StationCard key={s.id} station={s} />)}
@@ -183,17 +187,17 @@ export default function FindStation() {
             <div className="muted">No stations match.</div>
           )}
         </div>
+      </div>
 
-        <div className="map-col">
-          <Map
-            stations={stations}
-            activeFuelFilter={filters.fuel}
-            onFuelFilterChange={(fuelType) => {
-              setFilters((f) => ({ ...f, fuel: fuelType }));
-              // This will trigger the useEffect to fetch stations with the new filter
-            }}
-          />
-        </div>
+      <div className="map-col">
+        <Map
+          stations={stations}
+          activeFuelFilter={filters.fuel}
+          onFuelFilterChange={(fuelType) => {
+            setFilters((f) => ({ ...f, fuel: fuelType }));
+            // This will trigger the useEffect to fetch stations with the new filter
+          }}
+        />
       </div>
     </div>
   );

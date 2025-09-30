@@ -173,7 +173,7 @@ export default function Map({
 
         // Add click handler to navigate to station detail
         advancedMarker.addListener("click", () => {
-          navigate(`/stations/${station.id}`);
+          navigate(`/station/${station.id}`);
         });
 
         advancedMarkers.push(advancedMarker);
