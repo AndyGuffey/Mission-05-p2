@@ -2,36 +2,63 @@
   --z-orange: #ff7a00;
 }
 
+/* Finder grid: two columns, left stacks header/searchbar/results, right is map */
+.finder-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  min-height: 0;
+  height: 100vh;
+}
+
+@media (min-width: 1000px) {
+  .finder-grid {
+    grid-template-columns: 38.75rem 1fr;
+    height: 100vh;
+    min-height: 0;
+  }
+}
+
+/* Left column stacks header, searchbar, and results */
+.finder-left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 38.75rem;
+}
+
 .finder-header {
-  background: var(--z-orange);
+  background: linear-gradient(270deg, #ffcb08 0%, #f26522 100%);
   color: #fff;
-  padding: 14px 16px 8px; /* space around title + subtitle */
-  border-radius: 16px 16px 0 0; /* top rounded corners */
+  padding: 14px 16px 8px;
+  border-radius: 0px 0px 0 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .finder-header .muted {
-  color: rgba(255, 255, 255, 0.9); /* subtitle on orange */
+  color: rgba(255, 255, 255, 0.9);
 }
 
-.finder {
-  width: clamp(320px, 75vw, 1440px);
-  max-width: none; /* override previous 1100px cap */
-  margin: 24px auto; /* centers the block */
-  padding: 0 16px;
-}
 .finder-header h1 {
   margin: 0;
   font-size: 2rem;
   line-height: 1.1;
   background: transparent;
 }
+
 .searchbar {
   display: flex;
-  gap: 8px;
-  background: var(--z-orange);
-  padding: 8px 16px 16px; /* bottom padding for the panel */
-  margin: 0 0 12px; /* remove top gap so it touches header */
-  border-radius: 0 0 16px 16px; /* bottom rounded corners */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: linear-gradient(270deg, #ffcb08 0%, #f26522 100%);
+  padding: 8px 16px 16px;
+  margin: 0 0 12px;
+  border-radius: 0 0 16px 16px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .searchbar input {
@@ -41,6 +68,8 @@
   border-radius: 999px;
   background: #fff;
   color: #111;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .filter-row {
@@ -55,17 +84,17 @@
   background: #fff;
 }
 
-.finder-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 12px;
-}
 .results-col {
   display: grid;
   gap: 10px;
   align-content: start;
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
 }
+
 .results-header {
   margin: 8px 0 4px;
   font-weight: 600;
@@ -75,19 +104,29 @@
 }
 
 .station-card {
-  padding: 14px;
+  padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 16px;
   background: #fff;
   display: grid;
   gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .station-card h3 {
   margin: 0.1rem 0;
 }
 
+/* Map column fills all available height */
 .map-col {
-  min-height: 360px;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.station-map-container {
+  flex: 1 1 auto;
+  height: 100%;
 }
 .map-stub {
   position: relative;
@@ -113,8 +152,13 @@
   background: var(--z-orange);
   box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.25);
 }
-@media (min-width: 1000px) {
-  .finder-grid {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
+
+/* Ensure all left column sections are full width and aligned */
+.finder-header,
+.searchbar,
+.results-col,
+.station-card {
+  width: 100%;
+  max-width: 38.75rem;
+  box-sizing: border-box;
 }
