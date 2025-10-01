@@ -144,41 +144,31 @@ export default function FindStation() {
 
         <div className="results-col">
           {/* Group results-header and filter-row in a station-card */}
-          <div className="station-card">
+          {/* <div className="station-card"> */}
+          <div className="results-header-row">
             <div className="results-header">
               <strong>{stations.length}</strong> Stations found
             </div>
-            <div className="filter-row">
-              <select
-                value={filters.service}
-                onChange={(e) =>
-                  setFilters((f) => ({ ...f, service: e.target.value }))
-                }
-              >
-                <option value="">All services</option>
-                <option>Car wash</option>
-                <option>LPG</option>
-                <option>Trailer hire</option>
-                <option>EV charging</option>
-                <option>Food</option>
-                <option>Restroom</option>
-                <option>Shop</option>
-              </select>
-              <select
-                value={filters.fuel}
-                onChange={(e) =>
-                  setFilters((f) => ({ ...f, fuel: e.target.value }))
-                }
-              >
-                <option value="">Fuel type</option>
-                <option>91</option>
-                <option>95</option>
-                <option>98</option>
-                <option>Diesel</option>
-                <option>EV</option>
-              </select>
-            </div>
+            <select
+              value={filters.service}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, service: e.target.value }))
+              }
+            >
+              <option value="">Services</option>
+              <option>Car wash</option>
+              <option>LPG</option>
+              <option>Trailer hire</option>
+              <option>EV charging</option>
+              <option>Food</option>
+              <option>Restroom</option>
+              <option>Shop</option>
+            </select>
           </div>
+          <div className="filter-row">
+            {/* Place your fuel filter or other filters here */}
+          </div>
+          {/* </div> */}
 
           {loading && <div className="loading">Loading…</div>}
           {!loading &&
