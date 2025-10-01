@@ -1,14 +1,14 @@
 :root {
-  --z-orange: #ff7a00;
+  --z-orange: #f26522;
   --content-max: 1400px;
 }
 .station-detail {
-  width: min(var(--content-max), 75vw);
+  width: 75vw;
   margin: 18px auto;
   padding: 0 16px;
 }
 .station-detail .btn-primary {
-  background: var(--z-orange);
+  background: #f26522;
   border: none;
   color: #fff;
   height: 42px;
@@ -28,12 +28,12 @@
   gap: 12px;
   margin: 8px 0 16px;
   padding: 14px 18px;
-  background: var(--z-orange);
+  background: #f26522;
   color: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   grid-area: bar;
-  width: 100%;
+  width: 55%;
 }
 .detail-bar .back {
   text-decoration: none;
@@ -48,7 +48,7 @@
   height: 28px;
   border-radius: 999px;
   background: #fff;
-  color: var(--z-orange);
+  color: #f26522;
   display: grid;
   place-items: center;
   line-height: 1;
