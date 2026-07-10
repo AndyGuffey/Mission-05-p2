@@ -101,7 +101,9 @@ Make sure your MongoDB server is running and your connection string is set corre
 
 ## Credits
 
+Developed collaboratively by:
+
 - [Andy Guffey](https://github.com/AndyGuffey)
-- [Thousif Noor Quadir Hoseyn](https://github.com/thousifnm)
+- [Thousif Noor Quadir Hoseyn](https://github.com/thousifnm) ([thousifnm@gmail.com](mailto:thousifnm@gmail.com))
 
 As part of [Mission Ready’s](https://www.missionreadyhq.com/?utm_source=google&utm_medium=cpc&gad_source=1&gad_campaignid=1689939568&gbraid=0AAAAAC3WQ6rSlROlTQwY3sHnzGH83qTkL&gclid=Cj0KCQjwovPGBhDxARIsAFhgkwSfMaZFRBEq1lCskO935vPZhwfYWpMcxW2gsTlEghar39g7uDLiUZkaApQhEALw_wcB) AI-Powered Advanced Full Stack Developer Diploma
